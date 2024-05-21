@@ -46,7 +46,7 @@ class CatInformationFragment : Fragment() {
             startActivity(browserIntent)
         }
         binding.backToMainFragmentButton.setOnClickListener{
-            findNavController().navigate(R.id.action_catInformationFragment_to_mainFragment)
+            findNavController().popBackStack()
         }
 
         return binding.root

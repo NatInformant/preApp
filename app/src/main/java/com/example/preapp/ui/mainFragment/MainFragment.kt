@@ -19,7 +19,7 @@ import com.example.preapp.ioc.ApplicationComponent
  * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MainFragment : Fragment() {
+class MainFragment () : Fragment() {
 
     val applicationComponent: ApplicationComponent
         get() = App.getApplicationInstance().applicationComponent
@@ -37,15 +37,17 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(inflater)
-
-        viewModel.updateCatsList()
-
-        setUpCatsList()
+        binding = FragmentMainBinding.inflate(inflater,container,false)
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.updateCatsList()
+        setUpCatsList()
+    }
     private fun setUpCatsList() {
         val recyclerView = binding.catsList
         recyclerView.layoutManager =
