@@ -31,6 +31,7 @@ class CatsListAdapter(
 
         fun onBind(catInformation: CatInformation) {
             catElementBinding.catBreed.text = catInformation.breedName
+
             catElementBinding.root.setOnClickListener {
                 goToCatInformationFragmentCallBack(
                     catInformation.breedDesc,

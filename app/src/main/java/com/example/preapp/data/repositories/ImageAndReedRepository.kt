@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @AppScope
 class ImageAndReedRepository @Inject constructor(
-    val dataSource: ImageAndReedRemoteDataSource
+    private val dataSource: ImageAndReedRemoteDataSource
 ) {
     private val _cats: MutableLiveData<HttpResponceState<List<CatInformation>>> = MutableLiveData(
         HttpResponceState.Success(

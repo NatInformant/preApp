@@ -9,7 +9,7 @@ import com.example.preapp.domain.useCases.ImageAndReedUseCase
 import kotlinx.coroutines.launch
 
 class MainFragmentViewModel (
-    val imageAndReedUseCase: ImageAndReedUseCase
+    private val imageAndReedUseCase: ImageAndReedUseCase
 ) :ViewModel() {
     val cats: LiveData<HttpResponceState<List<CatInformation>>> = imageAndReedUseCase.cats
 
