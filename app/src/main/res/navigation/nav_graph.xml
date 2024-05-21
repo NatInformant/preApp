@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.preapp.ui.mainFragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_catInformationFragment"
+            app:destination="@id/catInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catInformationFragment"
+        android:name="com.example.preapp.ui.catInformationFragment.CatInformationFragment"
+        android:label="fragment_cat_information"
+        tools:layout="@layout/fragment_cat_information" >
+        <action
+            android:id="@+id/action_catInformationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument android:name="breedDesc"/>
+        <argument android:name="imageUrl"/>
+        <argument android:name="origin"/>
+        <argument android:name="lifeSpan"/>
+        <argument android:name="wikiUrl"/>
+    </fragment>
+</navigation>
