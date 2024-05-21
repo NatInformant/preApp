@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.preapp.App
+import com.example.preapp.R
 import com.example.preapp.databinding.FragmentCatInformationBinding
 import com.example.preapp.ioc.ApplicationComponent
 import com.squareup.picasso.Picasso
@@ -42,6 +44,9 @@ class CatInformationFragment : Fragment() {
         binding.knowMoreInformationAboutCatButton.setOnClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(wikiUrl))
             startActivity(browserIntent)
+        }
+        binding.backToMainFragmentButton.setOnClickListener{
+            findNavController().navigate(R.id.action_catInformationFragment_to_mainFragment)
         }
 
         return binding.root
