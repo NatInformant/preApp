@@ -13,7 +13,7 @@ class ImageAndReedUseCase @Inject constructor(
     private val repository: ImageAndReedRepository
 )  {
     val cats: LiveData<HttpResponceState<List<CatInformation>>> = repository.cats
-    @MainThread
+
     suspend fun updateCatsList(){
         withContext(Dispatchers.IO){
             repository.updateCatsList()

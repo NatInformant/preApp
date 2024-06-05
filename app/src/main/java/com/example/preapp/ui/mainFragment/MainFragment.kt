@@ -14,6 +14,8 @@ import com.example.preapp.data.model.CatInformation
 import com.example.preapp.data.model.HttpResponceState
 import com.example.preapp.databinding.FragmentMainBinding
 import com.example.preapp.ioc.ApplicationComponent
+import com.example.preapp.ioc.MainViewModelFactory
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -27,13 +29,20 @@ class MainFragment () : Fragment() {
 
     lateinit var binding: FragmentMainBinding
 
-    private val viewModel: MainFragmentViewModel by viewModels { applicationComponent.getMainViewModelFactory() }
+    //А есть более элегантный способ?
+    @Inject
+    lateinit var viewModelFactory: MainViewModelFactory
+    private val viewModel: MainFragmentViewModel by viewModels { viewModelFactory }
 
     private val adapter = CatsListAdapter(
         goToCatInformationFragmentCallBack = ::goToCatInformationFragment,
         catInformationDiffUtil = CatInformationDiffUtil()
     )
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        applicationComponent.injectMainFragment(this)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

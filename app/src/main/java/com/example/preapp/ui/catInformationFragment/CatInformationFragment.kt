@@ -31,7 +31,13 @@ class CatInformationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCatInformationBinding.inflate(inflater)
+        binding = FragmentCatInformationBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //Это нормально или есть способ сделать по лучше,
         //при этом оставшись на том же уровне минимальной версии ОС?
@@ -39,7 +45,10 @@ class CatInformationFragment : Fragment() {
 
         Picasso.get()
             .load(catInformation?.imageUrl)
-            .resize(600, 400).into(binding.catImage)
+            .resize(
+                resources.getInteger(R.integer.cat_image_width),
+                resources.getInteger(R.integer.cat_image_height)
+            ).into(binding.catImage)
 
 
         binding.catDescription.text = catInformation?.breedDesc
@@ -52,10 +61,8 @@ class CatInformationFragment : Fragment() {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(wikiUrl))
             startActivity(browserIntent)
         }
-        binding.backToMainFragmentButton.setOnClickListener{
+        binding.backToMainFragmentButton.setOnClickListener {
             findNavController().popBackStack()
         }
-
-        return binding.root
     }
 }

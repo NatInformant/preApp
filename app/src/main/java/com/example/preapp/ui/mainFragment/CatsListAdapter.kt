@@ -1,9 +1,11 @@
 package com.example.preapp.ui.mainFragment
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.preapp.R
 import com.example.preapp.data.model.CatInformation
 import com.example.preapp.databinding.CatElementBinding
 import com.squareup.picasso.Picasso

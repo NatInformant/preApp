@@ -22,9 +22,8 @@ class ImageAndReedRepository @Inject constructor(
     )
     val cats:LiveData<HttpResponceState<List<CatInformation>>> = _cats
 
-    @MainThread
     suspend fun updateCatsList(){
-        val loadedList = withContext( Dispatchers.Main){
+        val loadedList = withContext(Dispatchers.IO){
             dataSource.updateCatsList()
         }
         _cats.postValue(loadedList)
