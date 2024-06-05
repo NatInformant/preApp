@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.preapp.App
 import com.example.preapp.R
+import com.example.preapp.data.model.CatInformation
 import com.example.preapp.databinding.FragmentCatInformationBinding
 import com.example.preapp.ioc.ApplicationComponent
+import com.example.preapp.ui.catInformationFragment.CatInformationFragmentArgs.Companion.fromBundle
 import com.squareup.picasso.Picasso
 
 
@@ -31,15 +33,20 @@ class CatInformationFragment : Fragment() {
     ): View {
         binding = FragmentCatInformationBinding.inflate(inflater)
 
+        //Это нормально или есть способ сделать по лучше,
+        //при этом оставшись на том же уровне минимальной версии ОС?
+        val catInformation = fromBundle(requireArguments()).catInformation as? CatInformation
+
         Picasso.get()
-            .load(arguments?.getString("imageUrl"))
+            .load(catInformation?.imageUrl)
             .resize(600, 400).into(binding.catImage)
 
-        binding.catDescription.text = arguments?.getString("breedDesc")
-        binding.catCountry.text = arguments?.getString("origin")
-        binding.catMaxAge.text = arguments?.getString("lifeSpan")
 
-        val wikiUrl = arguments?.getString("wikiUrl")
+        binding.catDescription.text = catInformation?.breedDesc
+        binding.catCountry.text = catInformation?.origin
+        binding.catMaxAge.text = catInformation?.lifeSpan
+
+        val wikiUrl = catInformation?.wikiUrl
 
         binding.knowMoreInformationAboutCatButton.setOnClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(wikiUrl))

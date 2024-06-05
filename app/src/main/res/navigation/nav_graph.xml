@@ -19,13 +19,6 @@
         android:name="com.example.preapp.ui.catInformationFragment.CatInformationFragment"
         android:label="fragment_cat_information"
         tools:layout="@layout/fragment_cat_information" >
-        <action
-            android:id="@+id/action_catInformationFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <argument android:name="breedDesc"/>
-        <argument android:name="imageUrl"/>
-        <argument android:name="origin"/>
-        <argument android:name="lifeSpan"/>
-        <argument android:name="wikiUrl"/>
+        <argument android:name="catInformation" app:argType="com.example.preapp.data.model.CatInformation"/>
     </fragment>
 </navigation>

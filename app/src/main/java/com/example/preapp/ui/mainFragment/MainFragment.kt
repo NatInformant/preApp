@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.preapp.App
+import com.example.preapp.data.model.CatInformation
 import com.example.preapp.data.model.HttpResponceState
 import com.example.preapp.databinding.FragmentMainBinding
 import com.example.preapp.ioc.ApplicationComponent
@@ -73,18 +74,10 @@ class MainFragment () : Fragment() {
 
 
     private fun goToCatInformationFragment(
-        breedDesc: String,
-        imageUrl: String,
-        origin: String,
-        lifeSpan: String,
-        wikiUrl: String
+        catInformation: CatInformation
     ) {
         val action = MainFragmentDirections.actionMainFragmentToCatInformationFragment(
-            breedDesc,
-            imageUrl,
-            origin,
-            lifeSpan,
-            wikiUrl
+            catInformation
         )
         findNavController().navigate(action)
     }

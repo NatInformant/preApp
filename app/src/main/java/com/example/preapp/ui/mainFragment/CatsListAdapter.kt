@@ -9,7 +9,7 @@ import com.example.preapp.databinding.CatElementBinding
 import com.squareup.picasso.Picasso
 
 class CatsListAdapter(
-    private val goToCatInformationFragmentCallBack: (String, String, String, String, String) -> Unit,
+    private val goToCatInformationFragmentCallBack: (CatInformation) -> Unit,
     catInformationDiffUtil: CatInformationDiffUtil
 ) : ListAdapter<CatInformation, CatsListAdapter.CatElementViewHolder>(catInformationDiffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatElementViewHolder {
@@ -24,7 +24,7 @@ class CatsListAdapter(
 
 
     class CatElementViewHolder(
-        private val goToCatInformationFragmentCallBack: (String, String, String, String, String) -> Unit,
+        private val goToCatInformationFragmentCallBack: (CatInformation) -> Unit,
         private val catElementBinding: CatElementBinding
     ) :
         RecyclerView.ViewHolder(catElementBinding.root) {
@@ -34,11 +34,7 @@ class CatsListAdapter(
 
             catElementBinding.root.setOnClickListener {
                 goToCatInformationFragmentCallBack(
-                    catInformation.breedDesc,
-                    catInformation.imageUrl,
-                    catInformation.origin,
-                    catInformation.lifeSpan,
-                    catInformation.wikiUrl
+                    catInformation
                 )
             }
 
