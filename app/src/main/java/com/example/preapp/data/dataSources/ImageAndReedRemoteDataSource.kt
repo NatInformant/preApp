@@ -11,10 +11,9 @@ class ImageAndReedRemoteDataSource @Inject constructor(
     private val catsApi: CatsApi
 )  {
 
-    val cats: MutableList<CatInformation> = ArrayList()
-
     suspend fun updateCatsList(): HttpResponceState<List<CatInformation>> {
-        cats.clear()
+        val cats: MutableList<CatInformation> = ArrayList()
+
         kotlin.runCatching {
             catsApi.getCatsInformation()
         }.fold(

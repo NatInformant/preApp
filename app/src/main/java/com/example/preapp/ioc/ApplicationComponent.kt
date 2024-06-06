@@ -16,7 +16,7 @@ import javax.inject.Scope
 @Scope
 annotation class AppScope
 
-@Component(modules = [DataModule::class, MainViewModelFactory::class])
+@Component(modules = [DataModule::class, MainViewModelFactoryModule::class])
 @AppScope
 interface ApplicationComponent {
     fun injectMainFragment(fragment: MainFragment)

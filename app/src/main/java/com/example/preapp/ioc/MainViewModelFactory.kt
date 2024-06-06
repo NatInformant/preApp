@@ -7,7 +7,7 @@ import com.example.preapp.ui.mainFragment.MainFragmentViewModel
 import dagger.Module
 import javax.inject.Inject
 
-@Module
+
 @Suppress("UNCHECKED_CAST")
 class MainViewModelFactory @Inject constructor(
     val imageAndReedUseCase: ImageAndReedUseCase

@@ -1,5 +1,6 @@
 package com.example.preapp.ui.mainFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.preapp.data.model.HttpResponceState
 import com.example.preapp.databinding.FragmentMainBinding
 import com.example.preapp.ioc.ApplicationComponent
 import com.example.preapp.ioc.MainViewModelFactory
+import com.example.preapp.ioc.applicationComponent
 import javax.inject.Inject
 
 /**
@@ -25,7 +27,7 @@ import javax.inject.Inject
 class MainFragment () : Fragment() {
 
     val applicationComponent: ApplicationComponent
-        get() = App.getApplicationInstance().applicationComponent
+        get() = requireContext().applicationComponent
 
     lateinit var binding: FragmentMainBinding
 
