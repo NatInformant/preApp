@@ -6,17 +6,14 @@ import com.example.preapp.ioc.AppScope
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import javax.inject.Inject
 
 
 @AppScope
-class ImageAndReedRemoteDataSource {
-    private val baseUrl = "https://api.thecatapi.com/v1/"
-    private val catsApi: CatsApi by lazy {
-        Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build().create()
-    }
+class ImageAndReedRemoteDataSource @Inject constructor(
+    private val catsApi: CatsApi
+)  {
+
     val cats: MutableList<CatInformation> = ArrayList()
 
     suspend fun updateCatsList(): HttpResponceState<List<CatInformation>> {
