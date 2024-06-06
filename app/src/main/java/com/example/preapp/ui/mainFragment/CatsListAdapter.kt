@@ -40,9 +40,13 @@ class CatsListAdapter(
                 )
             }
 
+
             Picasso.get()
                 .load(catInformation.imageUrl)
-                .resize(600, 400).into(catElementBinding.catImage)
+                .resize(
+                    catElementBinding.root.context.resources.getInteger(R.integer.cat_image_width),
+                    catElementBinding.root.context.resources.getInteger(R.integer.cat_image_height)
+                ).into(catElementBinding.catImage)
 
         }
     }

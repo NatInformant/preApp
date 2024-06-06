@@ -69,13 +69,15 @@ class MainFragment () : Fragment() {
                 is HttpResponceState.Success -> {
                     adapter.submitList(httpResponceState.value)
                 }
-
-                else -> {
+                is HttpResponceState.Failure -> {
                     Toast.makeText(
                         requireContext(),
                         "Проверьте своё подключение к интернету",
                         Toast.LENGTH_LONG
                     ).show()
+                }
+                else -> {
+
                 }
             }
         }

@@ -16,9 +16,7 @@ class ImageAndReedRepository @Inject constructor(
     private val dataSource: ImageAndReedRemoteDataSource
 ) {
     private val _cats: MutableLiveData<HttpResponceState<List<CatInformation>>> = MutableLiveData(
-        HttpResponceState.Success(
-            emptyList()
-        )
+        HttpResponceState.Loading
     )
     val cats:LiveData<HttpResponceState<List<CatInformation>>> = _cats
 
