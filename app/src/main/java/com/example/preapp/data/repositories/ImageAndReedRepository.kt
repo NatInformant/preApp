@@ -15,15 +15,9 @@ import javax.inject.Inject
 class ImageAndReedRepository @Inject constructor(
     private val dataSource: ImageAndReedRemoteDataSource
 ) {
-    private val _cats: MutableLiveData<HttpResponceState<List<CatInformation>>> = MutableLiveData(
-        HttpResponceState.Loading
-    )
-    val cats:LiveData<HttpResponceState<List<CatInformation>>> = _cats
-
-    suspend fun updateCatsList(){
-        val loadedList = withContext(Dispatchers.IO){
+    suspend fun updateCatsList(): HttpResponceState<List<CatInformation>> {
+        return withContext(Dispatchers.IO) {
             dataSource.updateCatsList()
         }
-        _cats.postValue(loadedList)
     }
 }

@@ -11,11 +11,9 @@ import javax.inject.Inject
 
 class ImageAndReedUseCase @Inject constructor(
     private val repository: ImageAndReedRepository
-)  {
-    val cats: LiveData<HttpResponceState<List<CatInformation>>> = repository.cats
-
-    suspend fun updateCatsList(){
-        withContext(Dispatchers.IO){
+) {
+    suspend fun updateCatsList(): HttpResponceState<List<CatInformation>> {
+        return withContext(Dispatchers.IO) {
             repository.updateCatsList()
         }
     }

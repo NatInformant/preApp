@@ -3,9 +3,6 @@ package com.example.preapp.data.dataSources
 import com.example.preapp.data.model.CatInformation
 import com.example.preapp.data.model.HttpResponceState
 import com.example.preapp.ioc.AppScope
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Inject
 
 
@@ -25,15 +22,7 @@ class ImageAndReedRemoteDataSource @Inject constructor(
                 if (responce.isSuccessful) {
                     responce.body()?.forEach {
                         cats.add(
-                            CatInformation(
-                                id = it.id,
-                                breedName= it.breeds[0].name,
-                                breedDesc =  it.breeds[0].description,
-                                imageUrl = it.imageUrl,
-                                origin = it.breeds[0].origin,
-                                lifeSpan = it.breeds[0].lifeSpan,
-                                wikiUrl = it.breeds[0].wikiUrl
-                            )
+                            CatDTOToCatInformationMapper.catInformationFromCatDTO(it)
                         )
                     }
 
