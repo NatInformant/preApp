@@ -7,6 +7,7 @@ import com.example.preapp.ui.mainFragment.MainFragment
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -26,9 +27,15 @@ interface ApplicationComponent {
 object DataModule {
     @Provides
     @AppScope
-    fun getCatsApi():CatsApi {
+    fun getCatsApi(interceptor: AuthorisationInterceptor): CatsApi {
         val baseUrl = "https://api.thecatapi.com/v1/"
+
+        val client = OkHttpClient().newBuilder().apply {
+            addInterceptor(interceptor)
+        }.build()
+
         return Retrofit.Builder()
+            .client(client)
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build().create()
