@@ -29,13 +29,12 @@ class MainFragment () : Fragment() {
     val applicationComponent: ApplicationComponent
         get() = requireContext().applicationComponent
 
-    lateinit var binding: FragmentMainBinding
-
     //А есть более элегантный способ?
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
     private val viewModel: MainFragmentViewModel by viewModels { viewModelFactory }
 
+    lateinit var binding: FragmentMainBinding
     private val adapter = CatsListAdapter(
         goToCatInformationFragmentCallBack = ::goToCatInformationFragment,
         catInformationDiffUtil = CatInformationDiffUtil()
@@ -50,7 +49,6 @@ class MainFragment () : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainBinding.inflate(inflater,container,false)
-
         return binding.root
     }
 
