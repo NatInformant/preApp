@@ -26,8 +26,6 @@ import javax.inject.Inject
  */
 class MainFragment () : Fragment() {
 
-    val applicationComponent: ApplicationComponent
-        get() = requireContext().applicationComponent
 
     //А есть более элегантный способ?
     @Inject
@@ -40,9 +38,9 @@ class MainFragment () : Fragment() {
         catInformationDiffUtil = CatInformationDiffUtil()
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        applicationComponent.injectMainFragment(this)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        requireContext().applicationComponent.injectMainFragment(this)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
