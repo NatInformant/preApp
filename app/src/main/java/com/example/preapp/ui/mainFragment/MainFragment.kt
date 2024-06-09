@@ -24,10 +24,7 @@ import javax.inject.Inject
  * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MainFragment () : Fragment() {
-
-
-    //А есть более элегантный способ?
+class MainFragment: Fragment() {
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
     private val viewModel: MainFragmentViewModel by viewModels { viewModelFactory }
@@ -40,7 +37,7 @@ class MainFragment () : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        requireContext().applicationComponent.injectMainFragment(this)
+        context.applicationComponent.injectMainFragment(this)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

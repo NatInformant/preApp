@@ -22,7 +22,6 @@ class ImageAndReedRemoteDataSource @Inject constructor(
                 if (responce.isSuccessful) {
                     val result =
                         responce.body()?.map(::catInformationFromCatDTO)?.toList() ?: emptyList()
-
                     return HttpResponceState.Success(result)
                 } else {
                     return HttpResponceState.Failure(responce.message())

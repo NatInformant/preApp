@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 class MainFragmentViewModel(
     private val imageAndReedUseCase: ImageAndReedUseCase
 ) : ViewModel() {
-    val cats: MutableLiveData<HttpResponceState<List<CatInformation>>> =
+    private val _cats: MutableLiveData<HttpResponceState<List<CatInformation>>> =
         MutableLiveData(HttpResponceState.Loading)
-
+    val cats: LiveData<HttpResponceState<List<CatInformation>>> = _cats
     fun updateCatsList() {
         viewModelScope.launch {
-            cats.postValue(imageAndReedUseCase.updateCatsList())
+            _cats.postValue(imageAndReedUseCase.updateCatsList())
         }
     }
 }

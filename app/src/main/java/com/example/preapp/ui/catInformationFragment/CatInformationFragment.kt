@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.preapp.App
 import com.example.preapp.R
 import com.example.preapp.data.model.CatInformation
@@ -26,7 +27,8 @@ class CatInformationFragment : Fragment() {
 
 
     lateinit var binding: FragmentCatInformationBinding
-
+    private val catInformationFragmentArgs by navArgs<CatInformationFragmentArgs>()
+    private val catInformation by lazy { catInformationFragmentArgs.catInformation }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,23 +41,19 @@ class CatInformationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Это нормально или есть способ сделать по лучше,
-        //при этом оставшись на том же уровне минимальной версии ОС?
-        val catInformation = fromBundle(requireArguments()).catInformation as? CatInformation
-
         Picasso.get()
-            .load(catInformation?.imageUrl)
+            .load(catInformation.imageUrl)
             .resize(
                 resources.getInteger(R.integer.cat_image_width),
                 resources.getInteger(R.integer.cat_image_height)
             ).into(binding.catImage)
 
 
-        binding.catDescription.text = catInformation?.breedDesc
-        binding.catCountry.text = catInformation?.origin
-        binding.catMaxAge.text = catInformation?.lifeSpan
+        binding.catDescription.text = catInformation.breedDesc
+        binding.catCountry.text = catInformation.origin
+        binding.catMaxAge.text = catInformation.lifeSpan
 
-        val wikiUrl = catInformation?.wikiUrl
+        val wikiUrl = catInformation.wikiUrl
 
         binding.knowMoreInformationAboutCatButton.setOnClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(wikiUrl))
