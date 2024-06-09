@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.preapp.R
 import com.example.preapp.data.model.CatInformation
 import com.example.preapp.databinding.CatElementBinding
-import com.squareup.picasso.Picasso
 
 class CatsListAdapter(
     private val goToCatInformationFragmentCallBack: (CatInformation) -> Unit,
@@ -40,14 +40,7 @@ class CatsListAdapter(
                 )
             }
 
-
-            Picasso.get()
-                .load(catInformation.imageUrl)
-                .resize(
-                    catElementBinding.root.context.resources.getInteger(R.integer.cat_image_width),
-                    catElementBinding.root.context.resources.getInteger(R.integer.cat_image_height)
-                ).into(catElementBinding.catImage)
-
+            catElementBinding.catImage.load(catInformation.imageUrl)
         }
     }
 }

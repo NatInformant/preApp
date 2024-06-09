@@ -49,11 +49,12 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.50'
     kapt 'com.google.dagger:dagger-compiler:2.50'
 
-    implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+
+    implementation 'io.coil-kt:coil:2.2.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

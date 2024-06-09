@@ -9,13 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
+import coil.size.Scale
 import com.example.preapp.App
 import com.example.preapp.R
 import com.example.preapp.data.model.CatInformation
 import com.example.preapp.databinding.FragmentCatInformationBinding
 import com.example.preapp.ioc.ApplicationComponent
 import com.example.preapp.ui.catInformationFragment.CatInformationFragmentArgs.Companion.fromBundle
-import com.squareup.picasso.Picasso
 
 
 /**
@@ -41,12 +42,7 @@ class CatInformationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Picasso.get()
-            .load(catInformation.imageUrl)
-            .resize(
-                resources.getInteger(R.integer.cat_image_width),
-                resources.getInteger(R.integer.cat_image_height)
-            ).into(binding.catImage)
+        binding.catImage.load(catInformation.imageUrl)
 
 
         binding.catDescription.text = catInformation.breedDesc
